@@ -1,3 +1,64 @@
 {
-  "extends": "next/core-web-vitals"
+  // root: trueの設定
+  // https://maku.blog/p/j6iu7it/
+  "root": true,
+  "plugins": ["import", "react", "jsx-a11y"],
+  "extends": ["next/core-web-vitals", "prettier"],
+  // https://zenn.dev/kimromi/articles/b7cf98005f3193
+  "rules": {
+    // https://fwywd.com/tech/next-eslint-prettier
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "import/no-anonymous-default-export": "warn",
+    "jsx-a11y/alt-text": [
+      "warn",
+      {
+        "elements": ["img"],
+        "img": ["Image"]
+      }
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "semi": false,
+        "singleQuote": true
+      }
+    ],
+    // https://zenn.dev/riemonyamada/articles/02e8c172e1eeb1
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "parent",
+          "sibling",
+          "index",
+          "object",
+          "type"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "{react,react-dom/**,react-router-dom}",
+            "group": "builtin",
+            "position": "before"
+          },
+          {
+            "pattern": "@src/**",
+            "group": "parent",
+            "position": "before"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["builtin"],
+        "alphabetize": {
+          "order": "asc"
+        },
+        "newlines-between": "always"
+      }
+    ],
+    "@typescript-eslint/consistent-type-imports": [
+      "error",
+      { "prefer": "type-imports" }
+    ]
+  }
 }
